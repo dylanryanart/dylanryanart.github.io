@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dylan Ryan :: Art Gallery &amp; Print Shop</title>
+<style>
+:root{
+  --bg:#c0c0c0; --ink:#000000; --link:#0000ee; --vlink:#551a8b; --panel:#ffffff;
+  --frame-hi:#ffffff; --frame-lo:#808080; --accent:#800000; --tile:#008080;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#a8a8a8; --panel:#e8e8e8; }
+}
+:root[data-theme="dark"]{ --bg:#a8a8a8; --panel:#e8e8e8; }
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg) repeating-linear-gradient(45deg,#b8b8b8 0 2px,#c0c0c0 2px 8px);
+  color:var(--ink); font-family:"Times New Roman",Times,serif; font-size:16px;
+}
+a{color:var(--link);} a:visited{color:var(--vlink);} a:active{color:var(--accent);}
+img{max-width:100%;}
+.wrap{max-width:900px;margin:10px auto;padding:0 8px;}
+.bevel{background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
+.bevel-in{border-top:2px solid var(--frame-lo); border-left:2px solid var(--frame-lo); border-bottom:2px solid var(--frame-hi); border-right:2px solid var(--frame-hi);}
+marquee,.marquee-fallback{background:#000; color:#0f0; font-family:"Courier New",monospace; padding:4px; font-size:13px;}
+header{ text-align:center; padding:14px 8px; background:linear-gradient(var(--tile),#005f5f); color:#fff; border:2px solid #000;}
+header h1{margin:4px 0; font-size:2.1em; text-shadow:2px 2px 0 #000;}
+header p{margin:2px 0; font-style:italic;}
+.blink{animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.layout{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;}
+nav{flex:0 0 170px; padding:8px;}
+nav h2{font-size:.95em; background:navy; color:#fff; margin:0 0 6px; padding:3px 6px;}
+nav ul{list-style:none; margin:0; padding:0;}
+nav li{margin:3px 0;}
+nav a.navbtn{display:block; padding:4px 6px; text-decoration:none; color:var(--ink); background:var(--panel);}
+nav a.navbtn:hover{background:#ffff99;}
+nav a.navbtn.active{background:navy; color:#fff;}
+main{flex:1; min-width:280px; padding:10px;}
+.section{display:none;}
+.section.active{display:block;}
+h2.title{background:#000080; color:#fff; padding:4px 8px; margin:0 0 10px; font-size:1.2em;}
+hr.rule{border:none; border-top:2px groove #808080; margin:14px 0;}
+.counter{font-family:"Courier New",monospace; background:#000; color:#0f0; padding:2px 6px; letter-spacing:2px;}
+table.info{border-collapse:collapse; width:100%;}
+table.info td{border:1px solid #808080; padding:6px; vertical-align:top;}
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; overflow-x:auto;}
+.thumb{cursor:pointer; padding:4px; text-align:center; font-size:11px;}
+.thumb .swatch{width:100%; aspect-ratio:1; border:2px dashed #808080; display:flex; align-items:center; justify-content:center; color:#444; background-size:cover; background-position:center;}
+.thumb.active .swatch{border-color:var(--accent);}
+.preview{margin-top:12px; text-align:center;}
+.preview .frame{display:inline-block; padding:8px; background:#fff;}
+.preview .frame .swatch{width:260px; height:260px; max-width:100%; border:3px double #000; display:flex; align-items:center; justify-content:center; color:#555;}
+.preview h3{margin:8px 0 2px;}
+.btnbar{margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; justify-content:center;}
+button,.btn{font-family:inherit; font-size:.95em; padding:5px 12px; cursor:pointer; background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
+button:active,.btn:active{border-color:var(--frame-lo) var(--frame-hi) var(--frame-hi) var(--frame-lo);}
+.cart-list{list-style:none; padding:0; margin:0;}
+.cart-list li{display:flex; justify-content:space-between; border-bottom:1px dotted #808080; padding:4px 0;}
+.badge{display:inline-block; background:#000; color:#0f0; padding:2px 6px; font-family:"Courier New",monospace; font-size:.75em;}
+footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
+.webring{display:flex; justify-content:space-between; background:#000; color:#fff; padding:6px 10px; font-family:"Courier New",monospace; font-size:.8em;}
+.webring a{color:#0ff;}
+.overflow-x{overflow-x:auto;}
+.gbook-entry{border:1px solid #808080; padding:6px; margin-bottom:6px; background:#ffffe0;}
+.hitctr span{background:#000;color:#0f0;font-family:"Courier New",monospace;padding:1px 3px;}
+@media(max-width:600px){nav{flex:1 1 100%;}}
+</style>
+</head>
+<body>
+<div class="marquee-scroll"><marquee>*** WELCOME TO DYLANRYAN.ART *** SIGN THE GUESTBOOK *** NEW PRINTS ADDED WEEKLY *** BEST VIEWED WITH EYES OPEN *** </marquee></div>
+
+<div class="wrap">
+  <header>
+    <h1>DYLAN RYAN</h1>
+    <p>~ original art &amp; prints ~</p>
+    <p><span class="blink">●</span> now taking print orders <span class="blink">●</span></p>
+  </header>
+
+  <div class="layout">
+    <nav class="bevel">
+      <h2>NAVIGATE</h2>
+      <ul>
+        <li><a href="#" class="navbtn active" data-target="home">🏠 Home</a></li>
+        <li><a href="#" class="navbtn" data-target="gallery">🖼 Gallery</a></li>
+        <li><a href="#" class="navbtn" data-target="shop">🛒 Shop Prints</a></li>
+        <li><a href="#" class="navbtn" data-target="about">✎ About</a></li>
+        <li><a href="#" class="navbtn" data-target="guestbook">📖 Guestbook</a></li>
+        <li><a href="#" class="navbtn" data-target="cart">🧺 My Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+      <hr class="rule">
+      <p style="font-size:.75em">You are visitor #<br><span class="hitctr"><span id="hitCount">000001</span></span></p>
+    </nav>
+
+    <main class="bevel">
+
+      <section id="home" class="section active">
+        <h2 class="title">:: HOME ::</h2>
+        <table class="info">
+          <tr><td width="50%">
+            <p>Hi, I'm <b>Dylan Ryan</b>. This is my little corner of the internet — a gallery of my art and a shop where you can get it printed on real stuff (shirts, posters, mugs, you name it) through Printify.</p>
+            <p>No algorithm, no ads, no "trending shops." Just the art.</p>
+          </td><td width="50%">
+            <p><span class="badge">STATUS: OPEN</span></p>
+            <p><span class="badge">SHIPPING: WORLDWIDE</span></p>
+            <p><span class="badge">PLATFORM: HAND-CODED</span></p>
+          </td></tr>
+        </table>
+        <hr class="rule">
+        <p style="text-align:center">🚧 <b>PAGE UNDER CONSTRUCTION</b> — new art added every week 🚧</p>
+      </section>
+
+      <section id="gallery" class="section">
+        <h2 class="title">:: GALLERY ::</h2>
+        <p style="font-size:.9em">Click a piece to view it larger. (These are placeholders — swap in your real art. See the note in the HTML comments.)</p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="preview" id="galleryPreview"></div>
+      </section>
+
+      <section id="shop" class="section">
+        <h2 class="title">:: SHOP PRINTS ::</h2>
+        <p style="font-size:.9em">Pick a piece and a product. Checkout happens on my Printify storefront — safe, automatic, and I don't have to touch your credit card info. 🙂</p>
+        <div class="gallery-grid" id="shopGrid"></div>
+        <div class="preview" id="shopPreview"></div>
+      </section>
+
+      <section id="about" class="section">
+        <h2 class="title">:: ABOUT ::</h2>
+        <table class="info">
+          <tr><td>
+            <p><b>Dylan Ryan</b><br>Artist. Replace this bio with your real one — where you're from, what you make, what got you into it.</p>
+            <p>Contact: <a href="mailto:hello@example.com">hello@example.com</a></p>
+          </td></tr>
+        </table>
+      </section>
+
+      <section id="guestbook" class="section">
+        <h2 class="title">:: GUESTBOOK ::</h2>
+        <p style="font-size:.85em">Leave a note! (Saved on this device only — it's a placeholder, not a real shared guestbook.)</p>
+        <div class="bevel-in" style="padding:8px;">
+          <input id="gbName" placeholder="your name" style="width:45%;font-family:inherit;">
+          <input id="gbMsg" placeholder="your message" style="width:45%;font-family:inherit;">
+          <button id="gbSubmit">Sign</button>
+        </div>
+        <div id="gbEntries" style="margin-top:10px;"></div>
+      </section>
+
+      <section id="cart" class="section">
+        <h2 class="title">:: MY CART ::</h2>
+        <ul class="cart-list" id="cartList"></ul>
+        <p id="cartEmpty" style="display:none;font-size:.9em">Your cart is empty. Go add something from the Shop!</p>
+        <p style="font-size:.8em">This cart is just a wishlist for this demo — actual checkout happens on Printify when you click "Buy this print."</p>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="webring bevel" style="margin-top:8px;">
+    <span>⟨⟨ prev site</span>
+    <span>DYLAN RYAN ART WEBRING</span>
+    <span>next site ⟩⟩</span>
+  </div>
+
+  <footer>
+    © 2026 Dylan Ryan · built by hand, not by a template · <span class="blink">e</span>st. 2026
+  </footer>
+</div>
+
+<script>
+// ---- CONFIG: replace with your real Printify Pop-Up Store product links ----
+const PRINTIFY_STORE_URL = "https://your-store-name.printify.me"; // <-- change this
+const ART = [
+  {id:1, title:"Untitled 01", color:"#e07a5f"},
+  {id:2, title:"Untitled 02", color:"#3d5a80"},
+  {id:3, title:"Untitled 03", color:"#81b29a"},
+  {id:4, title:"Untitled 04", color:"#f2cc8f"},
+  {id:5, title:"Untitled 05", color:"#9d4edd"},
+  {id:6, title:"Untitled 06", color:"#bc6c25"},
+];
+// Replace `color` with a real image later, e.g. background:url('yourimage.jpg')
+
+function swatchStyle(a){ return `style="background:${a.color}"`; }
+
+function buildGrid(targetId, mode){
+  const grid = document.getElementById(targetId);
+  grid.innerHTML = ART.map(a => `
+    <div class="thumb" data-id="${a.id}" data-mode="${mode}">
+      <div class="swatch" ${swatchStyle(a)}>IMG</div>
+      <div>${a.title}</div>
+    </div>`).join("");
+}
+buildGrid("galleryGrid","gallery");
+buildGrid("shopGrid","shop");
+
+function renderPreview(mode, art){
+  const el = document.getElementById(mode+"Preview");
+  const buyBtn = mode === "shop"
+    ? `<button onclick="window.open(PRINTIFY_STORE_URL,'_blank')">🛍 Buy this print</button>`
+    : "";
+  el.innerHTML = `
+    <div class="frame bevel">
+      <div class="swatch" ${swatchStyle(art)}>IMAGE</div>
+      <h3>${art.title}</h3>
+      <p style="font-size:.85em">by Dylan Ryan · placeholder artwork</p>
+      <div class="btnbar">
+        <button onclick="addToCart(${art.id})">🧺 Add to cart</button>
+        ${buyBtn}
+      </div>
+    </div>`;
+}
+
+document.querySelectorAll(".thumb").forEach(t=>{
+  t.addEventListener("click", ()=>{
+    const id = +t.dataset.id, mode = t.dataset.mode;
+    document.querySelectorAll(`#${mode}Grid .thumb`).forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    renderPreview(mode, ART.find(a=>a.id===id));
+  });
+});
+
+// ---- nav ----
+document.querySelectorAll(".navbtn").forEach(btn=>{
+  btn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    document.querySelectorAll(".navbtn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).classList.add("active");
+  });
+});
+
+// ---- cart (localStorage, per-device demo only) ----
+function getCart(){ try{ return JSON.parse(localStorage.getItem("dr_cart")||"[]"); }catch(e){ return []; } }
+function setCart(c){ try{ localStorage.setItem("dr_cart", JSON.stringify(c)); }catch(e){} renderCart(); }
+function addToCart(id){
+  const art = ART.find(a=>a.id===id);
+  const c = getCart(); c.push(art); setCart(c);
+}
+function renderCart(){
+  const c = getCart();
+  document.getElementById("cartCount").textContent = c.length;
+  const list = document.getElementById("cartList");
+  document.getElementById("cartEmpty").style.display = c.length? "none":"block";
+  list.innerHTML = c.map((a,i)=>`<li>${a.title} <button onclick="removeFromCart(${i})">remove</button></li>`).join("");
+}
+function removeFromCart(i){ const c=getCart(); c.splice(i,1); setCart(c); }
+renderCart();
+
+// ---- guestbook (localStorage demo) ----
+function getGB(){ try{ return JSON.parse(localStorage.getItem("dr_guestbook")||"[]"); }catch(e){ return []; } }
+function renderGB(){
+  const entries = getGB();
+  document.getElementById("gbEntries").innerHTML = entries.length
+    ? entries.slice().reverse().map(e=>`<div class="gbook-entry"><b>${e.name}</b>: ${e.msg}</div>`).join("")
+    : `<p style="font-size:.85em">No entries yet — be the first!</p>`;
+}
+document.getElementById("gbSubmit").addEventListener("click", ()=>{
+  const name = document.getElementById("gbName").value.trim() || "anonymous";
+  const msg = document.getElementById("gbMsg").value.trim();
+  if(!msg) return;
+  try{
+    const e = getGB(); e.push({name,msg}); localStorage.setItem("dr_guestbook", JSON.stringify(e));
+  }catch(err){}
+  document.getElementById("gbName").value=""; document.getElementById("gbMsg").value="";
+  renderGB();
+});
+renderGB();
+
+// ---- fake hit counter ----
+try{
+  let n = parseInt(localStorage.getItem("dr_hits")||"18432",10) + Math.floor(Math.random()*3)+1;
+  localStorage.setItem("dr_hits", n);
+  document.getElementById("hitCount").textContent = String(n).padStart(6,"0");
+}catch(e){ document.getElementById("hitCount").textContent = "018432"; }
+</script>
+</body>
+</html>
