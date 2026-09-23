@@ -90,7 +90,6 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
         <li><a href="#" class="navbtn" data-target="shop">🛒 Shop</a></li>
         <li><a href="#" class="navbtn" data-target="about">✎ About</a></li>
         <li><a href="#" class="navbtn" data-target="guestbook">📖 Guestbook</a></li>
-        <li><a href="#" class="navbtn" data-target="cart">🧺 My Cart (<span id="cartCount">0</span>)</a></li>
       </ul>
       <hr class="rule">
       <p style="font-size:.75em">You are visitor #<br><span class="hitctr"><span id="hitCount">000001</span></span></p>
@@ -149,13 +148,6 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
         <div id="gbEntries" style="margin-top:10px;"></div>
       </section>
 
-      <section id="cart" class="section">
-        <h2 class="title">:: MY CART ::</h2>
-        <ul class="cart-list" id="cartList"></ul>
-        <p id="cartEmpty" style="display:none;font-size:.9em">Your cart is empty. Go add something from the Shop!</p>
-        <p style="font-size:.8em">This cart is just a wishlist for this demo — actual checkout happens on Printify when you click "Buy this."</p>
-      </section>
-
     </main>
   </div>
 
@@ -205,7 +197,6 @@ function renderPreview(mode, art){
       <h3>${art.title} <span style="font-weight:normal;font-size:.7em">(${art.product})</span></h3>
       <p style="font-size:.85em">by Dylan Ryan</p>
       <div class="btnbar">
-        <button onclick="addToCart(${art.id})">🧺 Add to cart</button>
         ${buyBtn}
       </div>
     </div>`;
@@ -230,23 +221,6 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
     document.getElementById(btn.dataset.target).classList.add("active");
   });
 });
-
-// ---- cart (localStorage, per-device demo only) ----
-function getCart(){ try{ return JSON.parse(localStorage.getItem("dr_cart")||"[]"); }catch(e){ return []; } }
-function setCart(c){ try{ localStorage.setItem("dr_cart", JSON.stringify(c)); }catch(e){} renderCart(); }
-function addToCart(id){
-  const art = ART.find(a=>a.id===id);
-  const c = getCart(); c.push(art); setCart(c);
-}
-function renderCart(){
-  const c = getCart();
-  document.getElementById("cartCount").textContent = c.length;
-  const list = document.getElementById("cartList");
-  document.getElementById("cartEmpty").style.display = c.length? "none":"block";
-  list.innerHTML = c.map((a,i)=>`<li>${a.title} <button onclick="removeFromCart(${i})">remove</button></li>`).join("");
-}
-function removeFromCart(i){ const c=getCart(); c.splice(i,1); setCart(c); }
-renderCart();
 
 // ---- guestbook (localStorage demo) ----
 function getGB(){ try{ return JSON.parse(localStorage.getItem("dr_guestbook")||"[]"); }catch(e){ return []; } }
