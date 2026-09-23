@@ -72,13 +72,13 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 </style>
 </head>
 <body>
-<div class="marquee-scroll"><marquee>*** WELCOME TO DYLANRYAN.ART *** SIGN THE GUESTBOOK *** NEW PRINTS ADDED WEEKLY *** BEST VIEWED WITH EYES OPEN *** </marquee></div>
+<div class="marquee-scroll"><marquee>*** WELCOME TO DYLANRYAN.ART *** SIGN THE GUESTBOOK *** NEW DESIGNS ADDED WEEKLY *** BEST VIEWED WITH EYES OPEN *** </marquee></div>
 
 <div class="wrap">
   <header>
     <h1>DYLAN RYAN</h1>
-    <p>~ original art &amp; prints ~</p>
-    <p><span class="blink">●</span> now taking print orders <span class="blink">●</span></p>
+    <p>~ original art &amp; merch ~</p>
+    <p><span class="blink">●</span> now taking orders <span class="blink">●</span></p>
   </header>
 
   <div class="layout">
@@ -87,7 +87,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <ul>
         <li><a href="#" class="navbtn active" data-target="home">🏠 Home</a></li>
         <li><a href="#" class="navbtn" data-target="gallery">🖼 Gallery</a></li>
-        <li><a href="#" class="navbtn" data-target="shop">🛒 Shop Prints</a></li>
+        <li><a href="#" class="navbtn" data-target="shop">🛒 Shop</a></li>
         <li><a href="#" class="navbtn" data-target="about">✎ About</a></li>
         <li><a href="#" class="navbtn" data-target="guestbook">📖 Guestbook</a></li>
         <li><a href="#" class="navbtn" data-target="cart">🧺 My Cart (<span id="cartCount">0</span>)</a></li>
@@ -102,7 +102,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
         <h2 class="title">:: HOME ::</h2>
         <table class="info">
           <tr><td width="50%">
-            <p>Hi, I'm <b>Dylan Ryan</b>. This is my little corner of the internet — a gallery of my art and a shop where you can get it printed on real stuff (shirts, posters, mugs, you name it) through Printify.</p>
+            <p>Hi, I'm <b>Dylan Ryan</b>. This is my little corner of the internet — a gallery of my art and a shop where you can get it printed on shirts, a sweatshirt, and posters through Printify.</p>
             <p>No algorithm, no ads, no "trending shops." Just the art.</p>
           </td><td width="50%">
             <p><span class="badge">STATUS: OPEN</span></p>
@@ -122,7 +122,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       </section>
 
       <section id="shop" class="section">
-        <h2 class="title">:: SHOP PRINTS ::</h2>
+        <h2 class="title">:: SHOP ::</h2>
         <p style="font-size:.9em">Pick a piece and a product. Checkout happens on my Printify storefront — safe, automatic, and I don't have to touch your credit card info. 🙂</p>
         <div class="gallery-grid" id="shopGrid"></div>
         <div class="preview" id="shopPreview"></div>
@@ -153,7 +153,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
         <h2 class="title">:: MY CART ::</h2>
         <ul class="cart-list" id="cartList"></ul>
         <p id="cartEmpty" style="display:none;font-size:.9em">Your cart is empty. Go add something from the Shop!</p>
-        <p style="font-size:.8em">This cart is just a wishlist for this demo — actual checkout happens on Printify when you click "Buy this print."</p>
+        <p style="font-size:.8em">This cart is just a wishlist for this demo — actual checkout happens on Printify when you click "Buy this."</p>
       </section>
 
     </main>
@@ -172,14 +172,12 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 
 <script>
 // ---- CONFIG: replace with your real Printify Pop-Up Store product links ----
-const PRINTIFY_STORE_URL = "https://your-store-name.printify.me"; // <-- change this
 const ART = [
-  {id:1, title:"Untitled 01", color:"#e07a5f"},
-  {id:2, title:"Untitled 02", color:"#3d5a80"},
-  {id:3, title:"Untitled 03", color:"#81b29a"},
-  {id:4, title:"Untitled 04", color:"#f2cc8f"},
-  {id:5, title:"Untitled 05", color:"#9d4edd"},
-  {id:6, title:"Untitled 06", color:"#bc6c25"},
+  {id:1, title:"Stacked Eyes", color:"#e07a5f", product:"Shirt", price:"$22.15", url:"https://dylanryan.printify.me/product/32321287"},
+  {id:2, title:"Abstract Surveillance", color:"#3d5a80", product:"Shirt", price:"$20.65", url:"https://dylanryan.printify.me/product/32321259"},
+  {id:3, title:"AI Surveillance Commentary", color:"#81b29a", product:"Shirt", price:"$26.89", url:"https://dylanryan.printify.me/product/32321245"},
+  {id:4, title:"Anti-Flock Big Brother", color:"#f2cc8f", product:"Sweatshirt", price:"$43.54", url:"https://dylanryan.printify.me/product/32321234"},
+  {id:5, title:"Gothic Church", color:"#9d4edd", product:"Poster", price:"$20.57", url:"https://dylanryan.printify.me/product/32321214"},
 ];
 // Replace `color` with a real image later, e.g. background:url('yourimage.jpg')
 
@@ -199,13 +197,13 @@ buildGrid("shopGrid","shop");
 function renderPreview(mode, art){
   const el = document.getElementById(mode+"Preview");
   const buyBtn = mode === "shop"
-    ? `<button onclick="window.open(PRINTIFY_STORE_URL,'_blank')">🛍 Buy this print</button>`
+    ? `<button onclick="window.open('${art.url}','_blank')">🛍 Buy this ${art.product} · ${art.price}</button>`
     : "";
   el.innerHTML = `
     <div class="frame bevel">
       <div class="swatch" ${swatchStyle(art)}>IMAGE</div>
-      <h3>${art.title}</h3>
-      <p style="font-size:.85em">by Dylan Ryan · placeholder artwork</p>
+      <h3>${art.title} <span style="font-weight:normal;font-size:.7em">(${art.product})</span></h3>
+      <p style="font-size:.85em">by Dylan Ryan</p>
       <div class="btnbar">
         <button onclick="addToCart(${art.id})">🧺 Add to cart</button>
         ${buyBtn}
