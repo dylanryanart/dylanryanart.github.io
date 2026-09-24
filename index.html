@@ -92,7 +92,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
         <li><a href="#" class="navbtn" data-target="guestbook">📖 Guestbook</a></li>
       </ul>
       <hr class="rule">
-      <p style="font-size:.75em">You are visitor #<br><span class="hitctr"><span id="hitCount">000001</span></span></p>
+      <p style="font-size:.75em">You are visitor #<br><span class="hitctr" id="histats_counter"></span></p>
     </nav>
 
     <main class="bevel">
@@ -169,13 +169,28 @@ const ART = [
   {id:4, title:"Anti-Flock Big Brother", image:"anti-flock.jpg", product:"Sweatshirt", price:"$43.54", url:"https://dylanryan.printify.me/product/32321234"},
   {id:5, title:"Gothic Church", image:"gothic-church.jpg", product:"Poster", price:"$20.57", url:"https://dylanryan.printify.me/product/32321214"},
 ];
-// Replace `color` with a real image later, e.g. background:url('yourimage.jpg')
+
+// GALLERY is separate from ART — this is your full portfolio, sellable or not.
+// Add/remove/rename entries freely; only items in ART show up in the Shop.
+const GALLERY = [
+  {id:101, title:"Sketchbook 01", image:"sketch-01.jpg"},
+  {id:102, title:"Sketchbook 02", image:"sketch-02.jpg"},
+  {id:103, title:"Untitled Study", image:"study-01.jpg"},
+  {id:104, title:"Stacked Eyes", image:"stacked-eyes.jpg"},
+  {id:105, title:"Abstract Surveillance", image:"abstract-surveillance.jpg"},
+  {id:106, title:"AI Surveillance Commentary", image:"ai-surveillance.jpg"},
+  {id:107, title:"Anti-Flock Big Brother", image:"anti-flock.jpg"},
+  {id:108, title:"Gothic Church", image:"gothic-church.jpg"},
+];
+// Replace `image` filenames above with whatever you actually upload for these.
+// If a title matches an ART title exactly, feel free to just reuse the same filename.
 
 function swatchStyle(a){ return `style="background-image:url('${a.image}');background-size:cover;background-position:center"`; }
 
 function buildGrid(targetId, mode){
+  const data = mode === "shop" ? ART : GALLERY;
   const grid = document.getElementById(targetId);
-  grid.innerHTML = ART.map(a => `
+  grid.innerHTML = data.map(a => `
     <div class="thumb" data-id="${a.id}" data-mode="${mode}">
       <div class="swatch" ${swatchStyle(a)}>IMG</div>
       <div>${a.title}</div>
@@ -192,7 +207,7 @@ function renderPreview(mode, art){
   el.innerHTML = `
     <div class="frame bevel">
       <div class="swatch" ${swatchStyle(art)}>IMAGE</div>
-      <h3>${art.title} <span style="font-weight:normal;font-size:.7em">(${art.product})</span></h3>
+      <h3>${art.title}${art.product ? ` <span style="font-weight:normal;font-size:.7em">(${art.product})</span>` : ""}</h3>
       <p style="font-size:.85em">by Dylan Ryan</p>
       <div class="btnbar">
         ${buyBtn}
@@ -203,9 +218,10 @@ function renderPreview(mode, art){
 document.querySelectorAll(".thumb").forEach(t=>{
   t.addEventListener("click", ()=>{
     const id = +t.dataset.id, mode = t.dataset.mode;
+    const data = mode === "shop" ? ART : GALLERY;
     document.querySelectorAll(`#${mode}Grid .thumb`).forEach(x=>x.classList.remove("active"));
     t.classList.add("active");
-    renderPreview(mode, ART.find(a=>a.id===id));
+    renderPreview(mode, data.find(a=>a.id===id));
   });
 });
 
@@ -240,12 +256,20 @@ document.getElementById("gbSubmit").addEventListener("click", ()=>{
 });
 renderGB();
 
-// ---- fake hit counter ----
-try{
-  let n = parseInt(localStorage.getItem("dr_hits")||"18432",10) + Math.floor(Math.random()*3)+1;
-  localStorage.setItem("dr_hits", n);
-  document.getElementById("hitCount").textContent = String(n).padStart(6,"0");
-}catch(e){ document.getElementById("hitCount").textContent = "018432"; }
+// ---- fake hit counter ---- (removed, replaced by Histats below)
 </script>
+
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5054024,4,5,172,25,00001000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5054024&101" alt="web page hit counter" border="0"></a></noscript>
+<!-- Histats.com  END  -->
 </body>
 </html>
