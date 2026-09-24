@@ -137,13 +137,24 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 
       <section id="guestbook" class="section">
         <h2 class="title">:: GUESTBOOK ::</h2>
-        <p style="font-size:.85em">Leave a note! (Saved on this device only — it's a placeholder, not a real shared guestbook.)</p>
+        <p style="font-size:.85em">Leave a note! Sign in with GitHub to post (powered by giscus).</p>
         <div class="bevel-in" style="padding:8px;">
-          <input id="gbName" placeholder="your name" style="width:45%;font-family:inherit;">
-          <input id="gbMsg" placeholder="your message" style="width:45%;font-family:inherit;">
-          <button id="gbSubmit">Sign</button>
+          <script src="https://giscus.app/client.js"
+                  data-repo="dylanryanart/dylanryanart.github.io"
+                  data-repo-id="R_kgDOUoKxvA"
+                  data-category="General"
+                  data-category-id="DIC_kwDOUoKxvM4DGQ4T"
+                  data-mapping="pathname"
+                  data-strict="0"
+                  data-reactions-enabled="1"
+                  data-emit-metadata="0"
+                  data-input-position="bottom"
+                  data-theme="preferred_color_scheme"
+                  data-lang="en"
+                  crossorigin="anonymous"
+                  async>
+          </script>
         </div>
-        <div id="gbEntries" style="margin-top:10px;"></div>
       </section>
 
     </main>
@@ -235,26 +246,6 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
     document.getElementById(btn.dataset.target).classList.add("active");
   });
 });
-
-// ---- guestbook (localStorage demo) ----
-function getGB(){ try{ return JSON.parse(localStorage.getItem("dr_guestbook")||"[]"); }catch(e){ return []; } }
-function renderGB(){
-  const entries = getGB();
-  document.getElementById("gbEntries").innerHTML = entries.length
-    ? entries.slice().reverse().map(e=>`<div class="gbook-entry"><b>${e.name}</b>: ${e.msg}</div>`).join("")
-    : `<p style="font-size:.85em">No entries yet — be the first!</p>`;
-}
-document.getElementById("gbSubmit").addEventListener("click", ()=>{
-  const name = document.getElementById("gbName").value.trim() || "anonymous";
-  const msg = document.getElementById("gbMsg").value.trim();
-  if(!msg) return;
-  try{
-    const e = getGB(); e.push({name,msg}); localStorage.setItem("dr_guestbook", JSON.stringify(e));
-  }catch(err){}
-  document.getElementById("gbName").value=""; document.getElementById("gbMsg").value="";
-  renderGB();
-});
-renderGB();
 
 // ---- fake hit counter ---- (removed, replaced by Histats below)
 </script>
