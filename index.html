@@ -6,8 +6,8 @@
 <title>Dylan Ryan ::  Gallery &amp;  Shop</title>
 <style>
 :root{
-  --bg:#c0c0c0; --ink:#000000; --link:#0000ee; --vlink:#551a8b; --panel:#ffffff;
-  --frame-hi:#ffffff; --frame-lo:#808080; --accent:#800000; --tile:#008080;
+  --bg:#c0c0c0; --ink:#F4F1E6; --link:#0000ee; --vlink:#551a8b; --panel:#2E2E24;
+  --frame-hi:#ffffff; --frame-lo:#C7B99A; --accent:#5E7B4F; --tile:#2F5D3A;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   box-sizing:border-box;
 }
@@ -18,7 +18,7 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
 *{box-sizing:border-box;}
 body{
-  margin:0; background:var(--bg) repeating-linear-gradient(45deg,#b8b8b8 0 2px,#c0c0c0 2px 8px);
+  margin:0; background:#EAE6D7;
   color:var(--ink); font-family:"Times New Roman",Times,serif; font-size:16px;
 }
 a{color:var(--link);} a:visited{color:var(--vlink);} a:active{color:var(--accent);}
@@ -26,24 +26,24 @@ img{max-width:100%;}
 .wrap{max-width:900px;margin:10px auto;padding:0 8px;}
 .bevel{background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
 .bevel-in{border-top:2px solid var(--frame-lo); border-left:2px solid var(--frame-lo); border-bottom:2px solid var(--frame-hi); border-right:2px solid var(--frame-hi);}
-marquee,.marquee-fallback{background:#0000FF; color:#FFFFFF; font-family:"Courier New",monospace; padding:4px; font-size:13px;}
-header{ text-align:center; padding:14px 8px; background:linear-gradient(var(--tile),#005f5f); color:#fff; border:2px solid #000;}
+marquee,.marquee-fallback{background:#3A3F2F; color:#F4F1E6; font-family:"Courier New",monospace; padding:4px; font-size:13px;}
+header{ text-align:center; padding:14px 8px; background:linear-gradient(#2F5D3A,#24462C); color:#F4F1E6;}
 header h1{margin:4px 0; font-size:2.1em; text-shadow:2px 2px 0 #000;}
 header p{margin:2px 0; font-style:italic;}
 .blink{animation:blink 1s steps(1) infinite;}
 @keyframes blink{50%{opacity:0;}}
 .layout{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;}
 nav{flex:0 0 170px; padding:8px;}
-nav h2{font-size:.95em; background:navy; color:#fff; margin:0 0 6px; padding:3px 6px;}
+nav h2{font-size:.95em; background:#D7CDB6; color:#2E2E24; margin:0 0 6px; padding:3px 6px;}
 nav ul{list-style:none; margin:0; padding:0;}
 nav li{margin:3px 0;}
 nav a.navbtn{display:block; padding:4px 6px; text-decoration:none; color:var(--ink); background:var(--panel);}
 nav a.navbtn:hover{background:#ffff99;}
-nav a.navbtn.active{background:navy; color:#fff;}
+nav a.navbtn.active{background:#7A9468; color:#F4F1E6;}
 main{flex:1; min-width:280px; padding:10px;}
 .section{display:none;}
 .section.active{display:block;}
-h2.title{background:#000080; color:#fff; padding:4px 8px; margin:0 0 10px; font-size:1.2em;}
+h2.title{background:#D7CDB6; color:#2E2E24; padding:4px 8px; margin:0 0 10px; font-size:1.2em;}
 hr.rule{border:none; border-top:2px groove #808080; margin:14px 0;}
 .counter{font-family:"Courier New",monospace; background:#000; color:#0f0; padding:2px 6px; letter-spacing:2px;}
 table.info{border-collapse:collapse; width:100%;}
@@ -61,9 +61,9 @@ button,.btn{font-family:inherit; font-size:.95em; padding:5px 12px; cursor:point
 button:active,.btn:active{border-color:var(--frame-lo) var(--frame-hi) var(--frame-hi) var(--frame-lo);}
 .cart-list{list-style:none; padding:0; margin:0;}
 .cart-list li{display:flex; justify-content:space-between; border-bottom:1px dotted #808080; padding:4px 0;}
-.badge{display:inline-block; background:#000; color:#0f0; padding:2px 6px; font-family:"Courier New",monospace; font-size:.75em;}
+.badge{display:inline-block; background:#5E7B4F; color:#F4F1E6; padding:2px 6px; font-family:"Courier New",monospace; font-size:.75em;}
 footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
-.webring{display:flex; justify-content:space-between; background:#000; color:#fff; padding:6px 10px; font-family:"Courier New",monospace; font-size:.8em;}
+.webring{display:flex; justify-content:space-between; background:#3A3F2F; color:#F4F1E6; padding:6px 10px; font-family:"Courier New",monospace; font-size:.8em;}
 .webring a{color:#0ff;}
 .overflow-x{overflow-x:auto;}
 .gbook-entry{border:1px solid #808080; padding:6px; margin-bottom:6px; background:#ffffe0;}
