@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dylan Ryan ::  Gallery &amp;  Shop</title>
 <meta property="og:title" content="Dylan Ryan :: Gallery &amp; Shop" />
-<meta property="og:description" content="Original art &amp; merch | new pieces every week." />
+<meta property="og:description" content="Original art &amp; merch — new pieces every week, printed on shirts, sweatshirts, and posters." />
 <meta property="og:image" content="https://dylanryan.world/dylanryanbl1x1.png" />
 <meta property="og:url" content="https://dylanryan.world/" />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="dylanryanbl1x1.png">
 <style>
+/* old geocities-ish look, keeping the beveled buttons + gross gray bg on purpose */
 :root{
   --bg:#c0c0c0; --ink:#F4F1E6; --link:#0000ee; --vlink:#551a8b; --panel:#2E2E24;
   --frame-hi:#ffffff; --frame-lo:#C7B99A; --accent:#5E7B4F; --tile:#2F5D3A;
@@ -145,6 +146,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <section id="guestbook" class="section">
         <h2 class="title">:: GUESTBOOK ::</h2>
         <p style="font-size:.85em">Leave a note! Sign in with GitHub to post (powered by giscus).</p>
+        <!-- giscus config, don't touch the repo-id/category-id unless it breaks -->
         <div class="bevel-in" style="padding:8px;">
           <script src="https://giscus.app/client.js"
                   data-repo="dylanryanart/dylanryanart.github.io"
@@ -175,7 +177,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 </div>
 
 <script>
-// ---- CONFIG: replace with your real Printify Pop-Up Store product links ----
+// printify links go here, update prices whenever they change em on their end
 const ART = [
   {id:1, title:"Always Watching", image:"stacked-eyes.jpg", product:"Shirt", price:"$22.15", url:"https://dylanryan.printify.me/product/32321287"},
   {id:2, title:"Nothing Sacred", image:"abstract-surveillance.jpg", product:"Shirt", price:"$20.65", url:"https://dylanryan.printify.me/product/32321259"},
@@ -184,8 +186,8 @@ const ART = [
   {id:5, title:"The Thirteenth Hour", image:"gothic-church.jpg", product:"Poster", price:"$20.57", url:"https://dylanryan.printify.me/product/32321214"},
 ];
 
-// GALLERY is separate from ART — this is your full portfolio, sellable or not.
-// Add/remove/rename entries freely; only items in ART show up in the Shop.
+// gallery = everything, shop = only stuff that's actually for sale
+// (basically just add to GALLERY if it's not going on printify)
 const GALLERY = [
   {id:101, title:"PATCH Series - 2007", image:"patch2007poster.png"},
   {id:102, title:"PATCH Series - Tabs", image:"patchacidposter.png"},
@@ -194,10 +196,11 @@ const GALLERY = [
   {id:105, title:"The Thirteenth Hour", image:"churchposter.jpg"},
   {id:106, title:"What Time Is It Now (Cover Art)", image:"whattimeisitnowcover.jpg"},
 ];
-// Replace `image` filenames above with whatever you actually upload for these.
-// If a title matches an ART title exactly, feel free to just reuse the same filename.
+// TODO: get real filenames for these once i actually export them from procreate
 
-function swatchStyle(a){ return `style="background-image:url('${a.image}');background-size:cover;background-position:center"`; }
+function swatchStyle(a){
+  return `style="background-image:url('${a.image}');background-size:cover;background-position:center"`;
+}
 
 function buildGrid(targetId, mode){
   const data = mode === "shop" ? ART : GALLERY;
@@ -237,9 +240,9 @@ document.querySelectorAll(".thumb").forEach(t=>{
   });
 });
 
-// ---- nav ----
+// nav buttons
 document.querySelectorAll(".navbtn").forEach(btn=>{
-  btn.addEventListener("click", (e)=>{
+  btn.addEventListener("click", e=>{
     e.preventDefault();
     document.querySelectorAll(".navbtn").forEach(b=>b.classList.remove("active"));
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
@@ -248,21 +251,19 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
   });
 });
 
-// ---- fake hit counter ---- (removed, replaced by Histats below)
-
-// ---- custom animated dove cursor ----
+// dove cursor thing, spent way too long on this lol
 const cursorEl = document.createElement("div");
 cursorEl.id = "doveCursor";
 document.body.appendChild(cursorEl);
 
-document.addEventListener("mousemove", (e)=>{
+document.addEventListener("mousemove", (e) => {
   cursorEl.style.left = e.clientX + "px";
   cursorEl.style.top = e.clientY + "px";
   cursorEl.style.opacity = "1";
 });
-document.addEventListener("mouseleave", ()=>{ cursorEl.style.opacity = "0"; });
+document.addEventListener("mouseleave", () => { cursorEl.style.opacity = "0"; });
 
-// hover state: swap to outline dove over clickable things, or the "no" dove over disabled things
+// swap the dove sprite depending on what you're hovering
 document.addEventListener("mouseover", (e)=>{
   if (e.target.closest(".disabled, [disabled], .sold-out")) {
     cursorEl.classList.add("is-disabled");
@@ -278,13 +279,13 @@ document.addEventListener("mouseout", (e)=>{
   }
 });
 
-// click: flap in place without breaking cursor tracking
+// flap the wings on click, restart the anim if you spam clicks
 document.addEventListener("click", ()=>{
   cursorEl.classList.remove("is-flapping");
-  void cursorEl.offsetWidth; // restart animation
+  void cursorEl.offsetWidth; // gotta force reflow or the animation won't restart
   cursorEl.classList.add("is-flapping");
 });
-cursorEl.addEventListener("animationend", (e)=>{
+cursorEl.addEventListener("animationend", e=>{
   if (e.animationName === "doveFlap") cursorEl.classList.remove("is-flapping");
 });
 </script>
