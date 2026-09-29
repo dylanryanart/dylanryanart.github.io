@@ -60,8 +60,9 @@ table.info td{border:1px solid #808080; padding:6px; vertical-align:top;}
 .preview .frame .preview-img{display:block; margin:0 auto; max-width:100%; max-height:70vh; width:auto; height:auto; border:3px double #000;}
 .preview h3{margin:8px 0 2px;}
 /* teaser video (home page) */
-.teaser{ margin:0 0 12px; background:#000; line-height:0; }
-.teaser video{ display:block; width:100%; height:auto; }
+.teaser{ position:relative; margin:0 0 12px; background:#000; line-height:0; }
+.teaser video{ display:block; width:100%; aspect-ratio:1 / 1; object-fit:cover; }
+.sound-toggle{ position:fixed; right:12px; bottom:calc(12px + env(safe-area-inset-bottom,0px)); line-height:1.2; color:var(--ink); z-index:9000; }
 .btnbar{margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; justify-content:center;}
 button,.btn{font-family:inherit; font-size:.95em; padding:5px 12px; cursor:pointer; background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
 button:active,.btn:active{border-color:var(--frame-lo) var(--frame-hi) var(--frame-hi) var(--frame-lo);}
@@ -84,7 +85,7 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
   transition:opacity .15s;
 }
 #doveCursor.is-hover{background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEMklEQVR4nMWXzUtbWRiHnxtriEmrxiSGqdCLNrG1WLoZ+xEK00LBgl3MajYDZRaz7cI/oKAVKcJ0xtm6savZiYiIqInO1FSjpWNQKOiYEjUqoilBg9GS9J1F9OptEpMWqj8IOfd8/Z5zz3vOPQdADn5nIgOAiHBWIAaAcDiM1+s9CxAxAEp1dTVWq5Wenh5E5FRBzh1/UBTlCC0NgaIohxAK+XUcOF990QE4HA6WlpYyaxUOIv6An+hmFJvDxt3bd6VA6KMOpqenpbe3V7LpY+qjSJom27SI95VXV9/7ynvSFMr7pffCQQxoKioq4tOnT1lbFBuK0y2P4kMnS7FFSyuKgvqdeuJoTcUm4GAVHMput+viIJeyQaRSKS29ubmJy+ViYHggG6yICMvLyxkAiqqqVFVVMTAwkBfiJNntdgBqq2s108/+SSaTGQAAOJ1O9vb28pokJanrcH9/X1ceCoVwu920tLTw/M/nAJKSFOvr6wDYbLYcPRuQQCAgg4ODWYPxuA4A5OVfL3X509PTAkhbW5t0d3cLIPH9eEZ5rsFJOByW/v5+GRoaOhHgxYsX0vFHR0b++Pi4BgdILBbTyoaGhmRxcTHPJmdGFhYWpL+/X0ZGRnICJBIJSSQSGfl+v18A2dnZkbm5OV3Z6OiomM1mDSAjBgDYRaltqOXKlSuUlJQwMzOTtZrJZMJkMuUcx/nz56mvr9eefT4fqqqyu7sLBW1SbkRVVTGbzRIMBk+cjuMjfPPmjZBebjr5fD6x2Wy6138utzvwH8oSSwKwvb2dHxiIRqOUlZXp8sbGxigpKUFVVaLRqG70JwMc0+G6zaeioiItHQ6H2djYIB6P43Q6uXfvXkb97DFwoOtcF4COjg48Hk9ec7/fj9FopLy8HICtrS2SySRut5umpiYikQgUMvd11IkHjwDS3t4uqVQq79y/fv1a+vr65N27d+JwOKSrq0tCoZBcunRJ1O/Vws8Wd7iTNv69XZqbmyWZTOY1n5yclL6+PpmYmJC6ujoB5NoP1+Ty7ct5jRWABhrEiBELFoYZ5unTp7S2thKLxbBarRmNJiYmMBqNQHrOV1ZWsNvtOJ1OXC5XYa/5OAAgz357xubWJqntFJ2dnRQXpz+/gUBAMzs0DIfDVFRUaHkVFRXc/+k+hkoDG39vfNEhRAMIBoO4XC4SiYT2NXv79i2RSERnBmC1Wmn8uZHS0lIA4qY4EW/ki4wPpS3DeDyOxWLBYkkfLGZmZohEItTU1PDol0eUlR6t7bgpztrsmrLG2td4Zgf4XIuLi1y9epXGJ42s/7v+VaMrRFn3gdnZWSorK3nc/Jj1f76duQ7gwoULWub8/DwXL14k6At+S2+9bj68KR8+fBARkeHhYfE88pz6NU1uPbwle3t7MjU1dXYX1hs/3pDV1dUzvTHz4NcHp2b+P9O6HA48jKOzAAAAAElFTkSuQmCC');}
-#doveCursor.is-disabled{background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEl0lEQVR4nL2Xy28TVxSHv+s85DwUmUdIEJAhAoOCiECkhOBSCCqKkOii267Y9A+Av4BFFFE2ldru2MCmXVRKJStCCBMDQg5xgPKUWEBAJAJBiuOgEGI7OPl014mCTVaTleE7d745587c+f/nWmYm/9e/LuUZvtLgdbYASCgcIqWn6NA6GP84bitE3eDB3aAUK7gbFEpXpGGpVpy8770oyuMDtzpb7YhtCUA2f27S29uLruvm5P39/ZsACEDfhz4APB6PbUGL1VQr+Pz3ebJ/svh8Ps7Pz+np6TGN2Wz2VWAqIJaXl2Vubk4AOTo6KknElR8rhUQsPuyHKBx7e3tSroVvC7K4uGiOXwsCQEKhUAWAYRhiGEbJ3HMhauWAJbnd7kpSERRFESwWKssAzc3N7OzsMDExUdV+enpKLpcjk8mAD1qSLaJpGolE4kkQS4UIQFVVUqlUTXt/f795HtuMkXFmSCQS9e9rFQDA4XAAcHNzU9U+MDCAYRhEo1Fiv2LQUv+elgHa29txuVyEQiGWlpZq+gUCAVwuF9FolHgkDnbtDE3TJBKJyMbGhgAVO6JcW1tbEg6HBRUZZVT8+F8MIn6/Xw4ODgSQO7mrC7G6uirxeNysJSOMVEA8JweUs7MzOjs72d/fp0mpv4HcbjfX19cAzMzMcMghk0zKGGMyxJBAA01F16cuyf3OoUd0HurO01pfX2dwcBCv18v09DSOdw40j8bs19mG4kP+/XcHui3lwtramhwfHwsguq5LOp2Wk5MTs2I2VAkVRTGfvnB+m7vFqTorfFVVNfuHwic9nU4/2huJ/xD3YfXypReXw1XVeWpqiqurKy4vL0u6qoJe8i1Q8jW/ZDWKxwWJSElHZRcA5JOoHkg5UFtbm20AlkG2t7e5uLhAURSGPw8/XmMTQLlqghTlwZv8V5hVMJlMvmrrVleBL4Gqgf8C44DjsUoOHbUAAAAASUVORK5CYII=');}
+#doveCursor.is-disabled{background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEWElEQVR4nMWXzUsbYRDGf5tKkxSqUaNRsjRtbYKgGFEoXfHiSVB6KvQgbW+91EN7CthSltCT4N+gIB68KIKIFQzbQitaUFBPYosgItiNiY1Ctu7G9NBm2SSbqNDa57K7837M887MOzMr8P8gAwj/S3E2m0UQBCr+CKJXqTgWi7GzswNAxVUqBpiamuLOnTvcvXsXIFphmXSeFWTL+0Uslqc4B0HI9/pFLSAvLS0Rj8fxer10dXWVI2yr2Eqgrq7O/HYAOX/ItitAVhQFSZJ4+PAhkiShKEqp+XI2m0XXdduNZmZm8Pv93Lp1i9wBHABOp7OE7t/w+/15pnO5XLZEc6euqLA37NnZWdGYA2B3dzdnssJTyfPz8wSDQVRVNYWZTKak8nIQBAGv11tMwDCMvM2sz6amJoCihZfF3Nwcfr+fQCAAlvipAKitrQVgf3+fhoYGHA6HPDIywvHxMaFQiO3tbe7du2dupmlaHmEbixRB0zR8Pl+RPOdYeWVlhfv37wOQTqe5ceMGY2Nj7O3t8fbtW6zjABMTEzx9+hQoHfE5vH//nurqaiRJIpvN5t0eMyJqampYWFigt7cXt9vN0dERHo/HnHh6epq36ZMnTzg4OCi614VYWFjAMAwaGhpsiZoE2tramJubMweqqqrY3NwkEAhQWVlpq2hwcLCs8sXFRXRdJxQKEQwGwSZ3OP48o+l0mkAgQCwWMwdbW1u5efNmSQUul6vUlWRtbQ23200oFCIcDqPrum3iclg/rD4uhNPpzCWgc7G+vk53dzcDAwN0d3ejaVrJ1G0lED08PCQQCLC8vFykzOFwcHh4eCECqVSKdDrN7u4uqqqWrRuOQkFPTw+VlZWcnJywsrJilk2Aa9euXYhAQV4pi0IC0b29Pfr6+ggGgxiGYZ7a4/Fw/fp1Pn36dO6mkiQxPDwMQE1NTakaA5TuiOSWlhaOj49RFIVYLMbr16/5+PEjX79+zVXEsiQymQzDw8O8efMGn8/Hz58/OTo6KnLHeS2ZHA6HcTqdfPnyhebmZkZHR1FVlfr6eh48eFB2sWEYRCIRGhsbiUQi+Hw+Dg4O8khctieUt7e3+f79O/F4HFEUOTs7A34nKjurJJNJPB4Psizz7t07RFHEMAwymQyqqkYv3ZSGw2E5lUoxOztLIpEw5YlEgtu3b+dVytPTU9NKuq7z6tUr3G43Xq+XoaEhgMsTyKGzs9MMrlQqxfT0NMlkMm9OIpFAFEU6OzsBiMfjuFwuvn37Rnt7O1h6wktjdXU1z5fPnz/Pi/YfP34wOTnJzs4OgiDQ0dFhlvSTkxNz3l/ripeXl4si/NmzZ/L4+DhbW1t0dHTYritKRH8T6+vr0RcvXlBfX8/GxsbVEwD4/PkzjY2NbG1tmTJrgfvnBIDo4OCg2Vskk0levnwJ1q74X2NxcZGqqio0TePRo0d8+PDBHLuKXzMARFGkv78fRVGu4j+0GI8fP7YtSr8AthyupK024R0AAAAASUVORK5CYII=');}
 #doveCursor.is-flapping{animation:doveFlap .5s steps(1) 1;}
 @keyframes doveFlap{
   0%, 100%{background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEQUlEQVR4nMWXzU9TaRTGf7cFUspHKqV8CVwJFIPRiHFGsTEREkJMmJjZzkY38wdIMrPVBSHGzSSzdYObmQWJIUSJsVLNmIIFFhBISCCFAMEQhn5orW2ptz2zcLjTS1sqTtBn0+Z9z3nP85yc95z3Knw7CIDpGwUWEQGg6N8F5SsFRkTweDysr68DXycDumIR4dGjR5w4cYKWlhYApSjDqFAWJOP/52RMV5wJRTG6FvF5EK/PS3A3iN1h52rX1cMI5wycScDhcBgd1jbWBKNCw/7EqwnJxMSriXz2IiKSTCUlF0ZHR2VmZsbgawKwFFsOEQ9qvWpIXVlxWU6i+6qLTcU5z0mn05jNZsOaCWBzc3M/ZQdVybh7nLa2NnZ3d/XFVCqVN/hhUBSF6urqbAKaphkOy/xtb2kHyHI8KsbHxzl58iSqqkJG/RQB2O12ALa3t6mpq8GsmOXe7/fYC+/hdDrx+/20trbqh+3t7RkIa2IQkBOJRILa2tq8+zIzM6MXS3QvKoAMDw/L4OCgHNwXEXn458P9YspZcJl4+vSp+Hw+wZRduPo1rKqqwu1209fXR1lJGW/fvsVms+VTza2fbrGzs0NR+vCb7Ha70TSNuro6SOe3E6vVKi9evDAwX1xclPfv3wsgXq83S1k8Hpd4PJ5X+fPnz+Xx48eysrIiWHNf8/1WrMRiMVRVxePx6Jtnz56lvLw8L2uLxYLFkvsKz83NUVpayunTp2n/vh1ihbun2O128Xg8WUoAmZ2dzcpQPszPz4vVahVVVQVn3gYHGFuxEgwGRVVVfD4f8Xicnp6e/1JlMhEMBguJACASiRCLxdjY2IACcyNrGnZ3d1NZWUk0GmV6elofm0BWF8uHA33lUBwkoGxtbdHf34/T6UTTNAKBAAA2m42SkhK8Xm/BQ10uF/fv3wfgHOcKt8gcEPU7VZqbm2V1dVUePHggDodDlpaWZGxsTCYnJwvWQSqVkqGhIQHEhUs66PgyIq1drXLm2hkBpKOjQ6ampmRsbExev35dkISmaTIwMCBDv30icoUrWSSO+hQTv9/Pzs4OgUCApqYmfTAlk0lcLleWQzgcxmazcffuXQYHB+mjjw98IEmSWWaVI78Fa7trJf13mpcjLwmFQvp6KBTi1KlThkmZTCbp6uoC4OPHj9y+fRtzpRlHtYM7v9wBODqBfTT2Nkp54lOTikQiPPvjGeFw2GATCoVobGzk4sWLAAQCAUpLS/H7/XR2dkLGm/DI2JrYMpC/8esNnRDAu8g7njx8wtraGiaTiQsXLugjPRqNfmnYo6H+Wr0sLCzIyMiIoTi9Xq/+LDvWZ/n2X9vKzYGb1NTUsLCwkNPm2L8L5j3zNDQ0sLy8rK9VVFQcd1gjXD+4xO12i4hIKBSSS9cvfVFT+j+Q6elpSSQScvn65cM+AY6PwJs3b+T8j+e/emAdvT/35gz+D7qFAl5eawU/AAAAAElFTkSuQmCC');}
@@ -138,11 +139,11 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <section id="home" class="section active">
         <h2 class="title">:: HOME ::</h2>
 
-        <!-- autumn collection teaser: loops silently like an animated graphic -->
+        <!-- collection teaser: starts muted (browsers require it), viewer can turn sound on -->
         <div class="teaser bevel-in">
-          <video autoplay muted loop playsinline preload="auto"
-                 poster="autumnteaser-poster.jpg" aria-label="Autumn collection teaser">
-            <source src="autumnteaser.mp4" type="video/mp4">
+          <video id="teaserVideo" autoplay muted loop playsinline preload="auto"
+                 poster="videofinal-poster.jpg" aria-label="Collection teaser">
+            <source src="videofinal.mp4" type="video/mp4">
           </video>
         </div>
 
@@ -203,6 +204,10 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
     © 2026 Dylan Ryan · est. 2026
   </footer>
 </div>
+
+<!-- sitewide audio: starts on the visitor's first click/tap, stays on across every tab -->
+<audio id="siteAudio" src="sitesound.mp3" loop preload="auto"></audio>
+<button type="button" id="soundToggle" class="btn sound-toggle" title="Toggle sound" aria-label="Sound off">🔇</button>
 
 <!-- Lightbox markup -->
 <div class="lightbox-overlay" id="lightbox">
@@ -291,6 +296,38 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
     btn.classList.add("active");
     document.getElementById(btn.dataset.target).classList.add("active");
   });
+});
+
+// sitewide audio. browsers block sound until the visitor interacts with the page,
+// so it starts on their first click/tap/keypress anywhere, then the button toggles it.
+const teaserVideo = document.getElementById("teaserVideo");
+const siteAudio = document.getElementById("siteAudio");
+const soundBtn = document.getElementById("soundToggle");
+let audioStarted = false;
+
+function setSound(on){
+  if(on) siteAudio.play().catch(()=>{});
+  else siteAudio.pause();
+}
+// the emoji follows what the audio is actually doing: 🔊 while playing, 🔇 (with the slash) when not
+function syncSoundIcon(){
+  const playing = !siteAudio.paused;
+  soundBtn.textContent = playing ? "🔊" : "🔇";
+  soundBtn.setAttribute("aria-label", playing ? "Sound on" : "Sound off");
+}
+["play","playing","pause","ended","error"].forEach(ev => siteAudio.addEventListener(ev, syncSoundIcon));
+syncSoundIcon();
+function firstInteraction(e){
+  if(audioStarted) return;
+  if(e.target.closest && e.target.closest("#soundToggle")) return; // button handles itself
+  audioStarted = true;
+  teaserVideo.currentTime = 0; // line the visual up with the audio
+  setSound(true);
+}
+["pointerdown","keydown"].forEach(ev => document.addEventListener(ev, firstInteraction));
+soundBtn.addEventListener("click", ()=>{
+  audioStarted = true; // manual choice wins over auto-start
+  setSound(siteAudio.paused);
 });
 
 // --- Lightbox logic ---
