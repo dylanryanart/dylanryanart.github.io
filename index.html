@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7A3412">
 <title>Dylan Ryan ::  Gallery &amp;  Shop</title>
 <meta property="og:title" content="Dylan Ryan :: Gallery &amp; Shop" />
 <meta property="og:description" content="Original art &amp; merch — new pieces every week, printed on shirts, sweatshirts, and posters." />
@@ -13,15 +15,17 @@
 <style>
 /* old geocities-ish look, keeping the beveled buttons + gross gray bg on purpose */
 :root{
-  --bg:#c0c0c0; --ink:#F4F1E6; --link:#0000ee; --vlink:#551a8b; --panel:#2E2E24;
-  --frame-hi:#ffffff; --frame-lo:#C7B99A; --accent:#5E7B4F; --tile:#2F5D3A;
+  --page:#E4D3B5; --ink:#F4E9D8; --ink-dark:#2B1F16; --link:#F0A04B; --vlink:#C9906A; --panel:#2B211A;
+  --frame-hi:#F3DDB8; --frame-lo:#9C6B3F; --accent:#B35A1C; --tile:#7A3412;
+  --head-1:#A94D19; --head-2:#7A3412; --bar:#E3C08A; --strip:#3B2A1E;
+  --nav-on:#B35A1C; --nav-hover:#E8AE58; --line:#8C6A47; --amber:#FFB347;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   box-sizing:border-box;
 }
-html{scroll-padding-top:env(safe-area-inset-top,0px); min-height:100%; background:#EAE6D7;}
+html{scroll-padding-top:env(safe-area-inset-top,0px); min-height:100%; background:var(--page);}
 *{box-sizing:border-box;}
 body{
-  margin:0; background:#EAE6D7; min-height:100vh;
+  margin:0; background:var(--page); min-height:100vh;
   color:var(--ink); font-family:"Times New Roman",Times,serif; font-size:16px;
 }
 a{color:var(--link);} a:visited{color:var(--vlink);} a:active{color:var(--accent);}
@@ -29,52 +33,64 @@ img{max-width:100%;}
 .wrap{max-width:900px;margin:10px auto;padding:0 8px;}
 .bevel{background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
 .bevel-in{border-top:2px solid var(--frame-lo); border-left:2px solid var(--frame-lo); border-bottom:2px solid var(--frame-hi); border-right:2px solid var(--frame-hi);}
-marquee,.marquee-fallback{background:#3A3F2F; color:#F4F1E6; font-family:"Courier New",monospace; padding:4px; font-size:13px;}
-header{ text-align:center; padding:14px 8px; background:linear-gradient(#2F5D3A,#24462C); color:#F4F1E6;}
-header h1{margin:4px 0; font-size:2.1em; text-shadow:2px 2px 0 #000;}
+marquee,.marquee-fallback{background:var(--strip); color:var(--ink); font-family:"Courier New",monospace; padding:4px; font-size:13px;}
+header{ text-align:center; padding:14px 8px; background:linear-gradient(var(--head-1),var(--head-2)); color:var(--ink);}
+header h1{margin:4px 0; font-size:2.1em; text-shadow:2px 2px 0 #2B1308;}
 header p{margin:2px 0; font-style:italic;}
 .blink{animation:blink 1s steps(1) infinite;}
 @keyframes blink{50%{opacity:0;}}
 .layout{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; align-items:flex-start;}
 nav{flex:0 0 170px; padding:8px;}
-nav h2{font-size:.95em; background:#D7CDB6; color:#2E2E24; margin:0 0 6px; padding:3px 6px;}
+nav h2{font-size:.95em; background:var(--bar); color:var(--ink-dark); margin:0 0 6px; padding:3px 6px;}
 nav ul{list-style:none; margin:0; padding:0;}
 nav li{margin:3px 0;}
 nav a.navbtn{display:block; padding:4px 6px; text-decoration:none; color:var(--ink); background:var(--panel);}
-nav a.navbtn:hover{background:#ffff99;}
-nav a.navbtn.active{background:#7A9468; color:#F4F1E6;}
+nav a.navbtn:hover{background:var(--nav-hover); color:var(--ink-dark);}
+nav a.navbtn.active{background:var(--nav-on); color:var(--ink);}
 main{flex:1; min-width:280px; padding:10px;}
 .section{display:none;}
 .section.active{display:block;}
-h2.title{background:#D7CDB6; color:#2E2E24; padding:4px 8px; margin:0 0 10px; font-size:1.2em;}
-hr.rule{border:none; border-top:2px groove #808080; margin:14px 0;}
-.counter{font-family:"Courier New",monospace; background:#000; color:#0f0; padding:2px 6px; letter-spacing:2px;}
+h2.title{background:var(--bar); color:var(--ink-dark); padding:4px 8px; margin:0 0 10px; font-size:1.2em;}
+hr.rule{border:none; border-top:2px groove var(--line); margin:14px 0;}
+.counter{font-family:"Courier New",monospace; background:#000; color:var(--amber); padding:2px 6px; letter-spacing:2px;}
 table.info{border-collapse:collapse; width:100%;}
-table.info td{border:1px solid #808080; padding:6px; vertical-align:top;}
+table.info td{border:1px solid var(--line); padding:6px; vertical-align:top;}
 .gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; overflow-x:auto;}
 .thumb{cursor:pointer; padding:4px; text-align:center; font-size:11px;}
-.thumb .swatch{width:100%; aspect-ratio:1; border:2px dashed #808080; display:flex; align-items:center; justify-content:center; color:#444; background-size:cover; background-position:center;}
+.thumb .swatch{width:100%; aspect-ratio:1; border:2px dashed var(--line); display:flex; align-items:center; justify-content:center; color:#444; background-size:cover; background-position:center;}
 .thumb.active .swatch{border-color:var(--accent);}
 .preview{margin-top:12px; text-align:center;}
-.preview .frame{display:inline-block; padding:8px; background:#fff;}
-.preview .frame .preview-img{display:block; margin:0 auto; max-width:100%; max-height:70vh; width:auto; height:auto; border:3px double #000;}
+.preview .frame{display:inline-block; padding:8px; background:#F6EBD6;}
+.preview .frame .preview-img{display:block; margin:0 auto; max-width:100%; max-height:70vh; width:auto; height:auto; border:3px double var(--ink-dark);}
 .preview h3{margin:8px 0 2px;}
 /* teaser video (home page) */
+.hero-link{ display:block; }
+.hero-link:hover .hero{ filter:brightness(1.12); }
+.hero{ margin:0 0 12px; background:#000; line-height:0; }
+.hero img{ display:block; width:100%; height:auto; }
 .teaser{ position:relative; margin:0 0 12px; background:#000; line-height:0; }
 .teaser video{ display:block; width:100%; aspect-ratio:1 / 1; object-fit:cover; }
 .sound-toggle{ position:fixed; right:12px; bottom:calc(12px + env(safe-area-inset-bottom,0px)); line-height:1.2; color:var(--ink); z-index:9000; }
 .btnbar{margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; justify-content:center;}
-button,.btn{font-family:inherit; font-size:.95em; padding:5px 12px; cursor:pointer; background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
+.collection-box{margin:0 0 16px; padding:8px; background:#4A2310; border-top:2px solid var(--nav-hover); border-left:2px solid var(--nav-hover); border-bottom:2px solid #7A3412; border-right:2px solid #7A3412;}
+.collection-box h3{margin:0 0 8px; padding:5px 8px; text-align:center; letter-spacing:2px; font-size:1.05em; background:linear-gradient(var(--head-1),var(--head-2)); color:var(--ink); text-shadow:1px 1px 0 #2B1308;}
+#autumnGrid{grid-template-columns:repeat(3,1fr);}
+@media(max-width:600px){#autumnGrid{grid-template-columns:repeat(2,1fr);}}
+.shelf-label{margin:0 0 8px; padding:3px 8px; font-size:1em; background:var(--bar); color:var(--ink-dark);}
+.view-picker{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; width:100%;}
+.view-picker button.on{background:var(--nav-on);}
+button,.btn{font-family:inherit; font-size:.95em; color:var(--ink); padding:5px 12px; cursor:pointer; background:var(--panel); border-top:2px solid var(--frame-hi); border-left:2px solid var(--frame-hi); border-bottom:2px solid var(--frame-lo); border-right:2px solid var(--frame-lo);}
+button:hover,.btn:hover{background:#40301F;}
 button:active,.btn:active{border-color:var(--frame-lo) var(--frame-hi) var(--frame-hi) var(--frame-lo);}
 .cart-list{list-style:none; padding:0; margin:0;}
-.cart-list li{display:flex; justify-content:space-between; border-bottom:1px dotted #808080; padding:4px 0;}
-.badge{display:inline-block; background:#5E7B4F; color:#F4F1E6; padding:2px 6px; font-family:"Courier New",monospace; font-size:.75em;}
-footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
-.webring{display:flex; justify-content:space-between; background:#3A3F2F; color:#F4F1E6; padding:6px 10px; font-family:"Courier New",monospace; font-size:.8em;}
-.webring a{color:#0ff;}
+.cart-list li{display:flex; justify-content:space-between; border-bottom:1px dotted var(--line); padding:4px 0;}
+.badge{display:inline-block; background:var(--accent); color:var(--ink); padding:2px 6px; font-family:"Courier New",monospace; font-size:.75em;}
+footer{text-align:center; font-size:.8em; padding:12px; color:#5A4333;}
+.webring{display:flex; justify-content:space-between; background:var(--strip); color:var(--ink); padding:6px 10px; font-family:"Courier New",monospace; font-size:.8em;}
+.webring a{color:var(--amber);}
 .overflow-x{overflow-x:auto;}
-.gbook-entry{border:1px solid #808080; padding:6px; margin-bottom:6px; background:#ffffe0;}
-.hitctr span{background:#000;color:#0f0;font-family:"Courier New",monospace;padding:1px 3px;}
+.gbook-entry{border:1px solid var(--line); padding:6px; margin-bottom:6px; background:#F3E4C4; color:var(--ink-dark);}
+.hitctr span{background:#000;color:var(--amber);font-family:"Courier New",monospace;padding:1px 3px;}
 *, a, button, .btn, .navbtn, .thumb{cursor:none;}
 #doveCursor{
   position:fixed; left:-100px; top:-100px; width:32px; height:32px;
@@ -95,13 +111,13 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 
 /* --- Lightbox --- */
 .lightbox-overlay{
-  display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+  display:none; position:fixed; inset:0; background:rgba(24,14,8,.88);
   z-index:9998; align-items:center; justify-content:center; padding:20px;
 }
 .lightbox-overlay.open{display:flex;}
 .lightbox-overlay .frame{max-width:90vw; max-height:90vh; position:relative; padding:32px 10px 0 10px;}
 .lightbox-body{position:relative; display:flex; align-items:center; justify-content:center;}
-.lightbox-overlay img{max-width:100%; max-height:72vh; display:block; margin:0 auto; border:3px double #000;}
+.lightbox-overlay img{max-width:100%; max-height:72vh; display:block; margin:0 auto; border:3px double var(--ink-dark);}
 .lightbox-close{position:absolute; top:4px; right:4px; width:24px; height:24px; font-size:12px; line-height:1; z-index:2; padding:0;}
 .lightbox-nav{position:fixed; top:50%; transform:translateY(-50%); font-size:1.4em; padding:4px 10px; z-index:9999;}
 .lightbox-nav.prev{left:20px;} .lightbox-nav.next{right:20px;}
@@ -126,8 +142,8 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <h2>NAVIGATE</h2>
       <ul>
         <li><a href="#" class="navbtn active" data-target="home">🏠 Home</a></li>
-        <li><a href="#" class="navbtn" data-target="gallery">🖼 Gallery</a></li>
         <li><a href="#" class="navbtn" data-target="shop">🛒 Shop</a></li>
+        <li><a href="#" class="navbtn" data-target="gallery">🖼 Gallery</a></li>
         <li><a href="#" class="navbtn" data-target="about">✎ About</a></li>
         <li><a href="#" class="navbtn" data-target="guestbook">📖 Guestbook</a></li>
       </ul>
@@ -139,15 +155,19 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <section id="home" class="section active">
         <h2 class="title">:: HOME ::</h2>
 
-        <!-- collection teaser: starts muted (browsers require it), viewer can turn sound on -->
-        <div class="teaser bevel-in">
-          <video id="teaserVideo" autoplay muted loop playsinline preload="auto"
-                 poster="videofinal-poster.jpg" aria-label="Collection teaser">
-            <source src="videofinal.mp4" type="video/mp4">
-          </video>
-        </div>
+        <!-- autumn collection graphics: click either one and it jumps to the Autumn Collection in the Shop -->
+        <a href="#" class="hero-link" aria-label="Shop the Autumn 2026 Collection">
+          <div class="hero bevel-in">
+            <img src="autumn26squarepost.png" alt="Autumn 2026 Collection, available now on dylanryan.world">
+          </div>
+        </a>
+        <a href="#" class="hero-link" aria-label="Shop the Autumn 2026 Collection">
+          <div class="hero bevel-in">
+            <img src="instagrampost.png" alt="Autumn 2026 Collection preview" loading="lazy">
+          </div>
+        </a>
 
-        <p>Hi, I'm <b>Dylan Ryan</b>. This is a gallery of my art and a shop where you can get it printed on shirts, a sweatshirt, and posters through Printify.</p>
+        <p>Hi, I'm <b>Dylan Ryan</b>. This is a gallery of my art and a shop where you can get it printed on shirts, hats, a sweatshirt, stickers, and posters through Printify.</p>
       </section>
 
       <section id="gallery" class="section">
@@ -159,6 +179,12 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
       <section id="shop" class="section">
         <h2 class="title">:: SHOP ::</h2>
         <p style="font-size:.9em">Pick a piece. Look at the different colors offered, some have specific designs. Checkout happens on my Printify storefront. It's safer, automatic, and I don't have to touch your credit card info.</p>
+        <div class="collection-box">
+          <h3>🍂 AUTUMN COLLECTION 🍂</h3>
+          <div class="gallery-grid" id="autumnGrid"></div>
+        </div>
+
+        <h3 class="shelf-label">MORE PIECES</h3>
         <div class="gallery-grid" id="shopGrid"></div>
       </section>
 
@@ -226,11 +252,21 @@ footer{text-align:center; font-size:.8em; padding:12px; color:#333;}
 <script>
 // printify links go here, update prices whenever they change em on their end
 const ART = [
-  {id:1, title:"Always Watching", image:"stacked-eyes.jpg", product:"Shirt", price:"$22.15", url:"https://dylanryan.printify.me/product/32321287"},
-  {id:2, title:"Nothing Sacred", image:"abstract-surveillance.jpg", product:"Shirt", price:"$20.65", url:"https://dylanryan.printify.me/product/32321259"},
-  {id:3, title:"What If It Happened To You?", image:"ai-surveillance.jpg", product:"Shirt", price:"$26.89", url:"https://dylanryan.printify.me/product/32321245"},
-  {id:4, title:"Every Step, Every Breath", image:"anti-flock.jpg", product:"Sweatshirt", price:"$43.54", url:"https://dylanryan.printify.me/product/32321234"},
-  {id:5, title:"The Thirteenth Hour", image:"gothic-church.jpg", product:"Poster", price:"$20.57", url:"https://dylanryan.printify.me/product/32321214"},
+  // ---- AUTUMN DROP ---- (collection:"autumn" puts a piece in the autumn box; remove it to move a piece to the regular shelf)
+  // images = every picture for ONE product (colors / front / back). imageLabels = the button names, same order.
+  // url left empty = no Buy button yet. Printify links + prices filled in.
+  {id:6, collection:"autumn", title:"Autumnscape", images:["autumnscapeblack.jpg","autumnscapewhite.jpg"], imageLabels:["Black","White"], product:"Shirt", price:"$19.99", url:"https://dylanryan.printify.me/product/32584706"},
+  {id:7, collection:"autumn", title:"Memory 2000", images:["memory2000black.jpg","memory2000white.jpg"], imageLabels:["Black","White"], product:"Shirt", price:"$19.99", url:"https://dylanryan.printify.me/product/32584697"},
+  {id:8, collection:"autumn", title:"Skulls and Spiders", images:["skullblack.jpg","skullblackback.jpg","skullwhite.jpg","skullwhiteback.jpg"], imageLabels:["Black Front","Black Back","White Front","White Back"], product:"Shirt", price:"$20.99", url:"https://dylanryan.printify.me/product/32584692"},
+  {id:9, collection:"autumn", title:"Don't You Miss...", images:["dontyoumissblack.jpg","dontyoumisswhite.jpg"], imageLabels:["Black","White"], product:"Shirt", price:"$19.99", url:"https://dylanryan.printify.me/product/32584687"},
+  {id:10, collection:"autumn", title:"Autumn's Garden", images:["autumngardenbrown.jpg","autumngardenred.jpg"], imageLabels:["Brown","Red"], product:"Hat", price:"$39.99", url:"https://dylanryan.printify.me/product/32584682"},
+  {id:11, collection:"autumn", title:"Peace + Love / Leaves + Foxes", image:"stickerpack.png", product:"Sticker Pack", price:"$6.99", url:"https://dylanryan.printify.me/product/32584671"},
+  // ---- EARLIER PIECES ----
+  {id:1, title:"Always Watching", image:"stacked-eyes.jpg", product:"Shirt", price:"$20.99", url:"https://dylanryan.printify.me/product/32321287"},
+  {id:2, title:"Nothing Sacred", image:"abstract-surveillance.jpg", product:"Shirt", price:"$20.99", url:"https://dylanryan.printify.me/product/32321259"},
+  {id:3, title:"What If It Happened To You?", image:"ai-surveillance.jpg", product:"Shirt", price:"$26.99", url:"https://dylanryan.printify.me/product/32321245"},
+  {id:4, title:"Every Step, Every Breath", image:"anti-flock.jpg", product:"Sweatshirt", price:"$40.99", url:"https://dylanryan.printify.me/product/32321234"},
+  {id:5, title:"The Thirteenth Hour", image:"gothic-church.jpg", product:"Poster", price:"$40.99", url:"https://dylanryan.printify.me/product/32321214"},
 ];
 
 // gallery = everything, shop = only stuff that's actually for sale
@@ -248,12 +284,19 @@ const GALLERY = [
 ];
 // TODO: get real filenames for these once i actually export them from procreate
 
+// which pieces each box shows (lightbox arrows stay inside the same box)
+function dataFor(mode){
+  if(mode === "autumn") return ART.filter(a => a.collection === "autumn");
+  if(mode === "shop")   return ART.filter(a => a.collection !== "autumn");
+  return GALLERY;
+}
+
 function swatchStyle(a){
-  return `style="background-image:url('${a.image}');background-size:cover;background-position:center"`;
+  return `style="background-image:url('${itemImages(a)[0]}');background-size:cover;background-position:center"`;
 }
 
 function buildGrid(targetId, mode){
-  const data = mode === "shop" ? ART : GALLERY;
+  const data = dataFor(mode);
   const grid = document.getElementById(targetId);
   grid.innerHTML = data.map((a, i) => `
     <div class="thumb" data-id="${a.id}" data-mode="${mode}" style="transition-delay:${i * 40}ms">
@@ -264,6 +307,7 @@ function buildGrid(targetId, mode){
   observeThumbs(targetId);
 }
 buildGrid("galleryGrid","gallery");
+buildGrid("autumnGrid","autumn");
 buildGrid("shopGrid","shop");
 
 function attachThumbHandlers(targetId){
@@ -298,9 +342,18 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
   });
 });
 
+// home graphic -> jump to the Autumn Collection box in the shop
+document.querySelectorAll(".hero-link").forEach(link => {
+  link.addEventListener("click", e=>{
+    e.preventDefault();
+    document.querySelector('.navbtn[data-target="shop"]').click();
+    const box = document.querySelector(".collection-box");
+    if(box) box.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+});
+
 // sitewide audio. browsers block sound until the visitor interacts with the page,
 // so it starts on their first click/tap/keypress anywhere, then the button toggles it.
-const teaserVideo = document.getElementById("teaserVideo");
 const siteAudio = document.getElementById("siteAudio");
 const soundBtn = document.getElementById("soundToggle");
 let audioStarted = false;
@@ -321,7 +374,6 @@ function firstInteraction(e){
   if(audioStarted) return;
   if(e.target.closest && e.target.closest("#soundToggle")) return; // button handles itself
   audioStarted = true;
-  teaserVideo.currentTime = 0; // line the visual up with the audio
   setSound(true);
 }
 ["pointerdown","keydown"].forEach(ev => document.addEventListener(ev, firstInteraction));
@@ -334,20 +386,47 @@ soundBtn.addEventListener("click", ()=>{
 let lightboxData = [], lightboxIndex = 0;
 
 function openLightbox(mode, id){
-  lightboxData = mode === "shop" ? ART : GALLERY;
+  lightboxData = dataFor(mode);
   lightboxIndex = lightboxData.findIndex(a => a.id === id);
   showLightboxItem();
   document.getElementById("lightbox").classList.add("open");
 }
+function itemImages(a){ return (a.images && a.images.length) ? a.images : [a.image]; }
 function showLightboxItem(){
   const a = lightboxData[lightboxIndex];
-  document.getElementById("lightboxImg").src = a.image;
-  document.getElementById("lightboxImg").alt = a.title;
+  const pics = itemImages(a);
+  const img = document.getElementById("lightboxImg");
+  const bar = document.getElementById("lightboxBtnbar");
+  img.src = pics[0];
+  img.alt = a.title;
+  pics.slice(1).forEach(src => { new Image().src = src; }); // preload so switching is instant
   document.getElementById("lightboxTitle").textContent = a.title
     + (a.product ? ` (${a.product})` : "");
-  document.getElementById("lightboxBtnbar").innerHTML = a.url
-    ? `<button onclick="window.open('${a.url}','_blank')">🛍 Buy this ${a.product} · ${a.price}</button>`
-    : "";
+  bar.innerHTML = "";
+  if(pics.length > 1){
+    const picker = document.createElement("div");
+    picker.className = "view-picker";
+    const btns = pics.map((src, i) => {
+      const b = document.createElement("button");
+      b.textContent = (a.imageLabels && a.imageLabels[i]) || ("View " + (i + 1));
+      b.addEventListener("click", ()=>{
+        img.src = src;
+        img.alt = a.title + " (" + b.textContent + ")";
+        btns.forEach(x => x.classList.remove("on"));
+        b.classList.add("on");
+      });
+      return b;
+    });
+    btns[0].classList.add("on");
+    btns.forEach(b => picker.appendChild(b));
+    bar.appendChild(picker);
+  }
+  if(a.url){
+    const buy = document.createElement("button");
+    buy.textContent = `🛍 Buy this ${a.product} · ${a.price}`;
+    buy.addEventListener("click", ()=> window.open(a.url, "_blank"));
+    bar.appendChild(buy);
+  }
 }
 document.getElementById("lightboxClose").addEventListener("click", ()=>{
   document.getElementById("lightbox").classList.remove("open");
